@@ -1,0 +1,2 @@
+# msgs
+BNHP msg manager
