@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+#banner{
+    background-image: url('../images/Banker.jpg');
+    background-size: cover;
+    max-height: 290px;
+    padding: 15px 30px;
+}
+
+#banner h2, #banner p{
+    text-shadow: #fff 3px 3px 3px;
+    max-width: 300px;
+}
