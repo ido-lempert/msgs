@@ -1,0 +1,35 @@
+<template name="msgs">
+    <h2>Messages</h2>
+
+    <table class="msgs striped">
+        <thead>
+            <tr>
+                <th>Msg Code</th>
+                <th>Title</th>
+                <!--<th>Template</th>-->
+                <th>txt</th>
+                <th>URL</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each messages}}
+            <tr>
+                <td>{{msgCode}}</td>
+                <td>{{title}}</td>
+                <!--<td>{{templateId}}</td>-->
+                <td>{{txt}}</td>
+                <td>{{#if url}}<a href="{{url}}" target="_blank">{{url}}</a>{{/if}}</td>
+                <td>{{createdAt}}</td>
+                <td>
+                    <div class="actions">
+                        <a href="/msg/{{_id}}">Edit</a>&nbsp;|&nbsp;
+                        <a href="#" class="remove-msg" data-msg-id="{{_id}}">Remove</a>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</template>

@@ -1,0 +1,127 @@
+<template name="msg">
+    <h2>{{#if _id}}Edit{{else}}Create{{/if}} Message</h2>
+
+    <form id="add-msg">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="msgCode" type="text" name="msgCode" value="{{msgCode}}" placeholder="Enter CRM msg code" autofocus>
+                <label for="msgCode" class="active">(*) Msg code: <a class="modal-trigger" title="Generate CRM msg code: 12345" href="#generate-msg-code">generate</a></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="title" type="text" name="title" value="{{title}}" placeholder="Enter title">
+                <label for="title" class="active">Title:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                {{#if templateId}}
+                <div class="template-container">
+                    <iframe src="/api/template/{{templateId}}" allowfullscreen></iframe>
+                </div>
+                {{/if}}
+
+                <input id="templateId" type="hidden" name="templateId">
+                <label for="templateId" class="active">Template: <a class="modal-trigger" title="Choose template" href="#choose-template">Choose</a></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="txt" class="materialize-textarea" name="txt" value="{{txt}}" placeholder="Enter notification text: Happy birthday {{FULL_NAME}}.\n Don't forget to call us: {{SUPPORT_PHONE_NUMBER}}"></textarea>
+                <label for="txt" class="active">Text:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="url" type="text" name="url" value="{{url}}" placeholder="http://www.example.com">
+                <label for="url" class="active">Url:</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="waves-effect waves-light btn right" type="submit">{{#if _id}}Update{{else}}Add{{/if}}</button>
+        </div>
+    </form>
+
+
+    <!-- Modal Structure -->
+    <div id="generate-msg-code" class="modal">
+        <form>
+            <div class="modal-content">
+                <h4>Generate CRM msg code</h4>
+
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path" type="text" placeholder="Upload *.csv file">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="csv" class="materialize-textarea" placeholder="Enter CSV content"></textarea>
+                        <label for="csv" class="active">CSV:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="choose-template" class="modal">
+        <div class="modal-content">
+            <a class="modal-trigger right" title="Add template" href="#add-template">Add</a>
+            <h4>Choose Template</h4>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">search</i>
+                    <input id="templateSearch" type="text">
+                    <label for="templateSearch">Search...</label>
+                </div>
+            </div>
+
+            <ul class="templates-container clearfix">
+                {{#each templates}}
+                <li class="template" data-template-id="{{_id}}">
+                    <p><small>{{name}} ({{_id}})</small></p>
+                    <iframe src="/api/template/{{_id}}" allowfullscreen></iframe>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    <div id="add-template" class="modal">
+        <form id="add-template">
+            <div class="modal-content">
+                <h4>Add Template</h4>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="templateName" type="text" placeholder="Enter template name" autofocus>
+                        <label for="templateName" class="active">Name:</label>
+                    </div>
+                </div>
+
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path" type="text" placeholder="Upload *.zip file">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Add</button>
+            </div>
+        </form>
+    </div>
+</template>

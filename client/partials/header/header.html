@@ -1,0 +1,16 @@
+<template name="header">
+    <header>
+        <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="{{pathFor 'msgs'}}" class="brand-logo">Messy</a>
+                <ul class="right hide-on-med-and-down">
+                    {{> nav}}
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    {{> nav}}
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </header>
+</template>
